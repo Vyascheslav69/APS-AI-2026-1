@@ -12,9 +12,7 @@ public class Comparador {
     public static void main(String[] args) {
         DAO.readInstance("files/instances/test8.tsp/test8.tsp");
 
-        // ==========================
-        // 1. BUSCA DFS (PILHA)
-        // ==========================
+        // 1. BUSCA PROFUNDIDADE
         long inicioDFS = System.currentTimeMillis();
 
         EspacoDeBusca dfs = new EspacoDeBusca(new Pilha());
@@ -22,9 +20,7 @@ public class Comparador {
 
         long fimDFS = System.currentTimeMillis();
 
-        // ==========================
-        // 2. BFS (FILA)
-        // ==========================
+        // 2. BUSCA EM LARGURA
         long inicioBFS = System.currentTimeMillis();
 
         EspacoDeBusca bfs = new EspacoDeBusca(new Fila());
@@ -32,9 +28,7 @@ public class Comparador {
 
         long fimBFS = System.currentTimeMillis();
 
-        // ==========================
         // 3. HEURÍSTICA
-        // ==========================
         long inicioH = System.currentTimeMillis();
 
         Heuristica h = new Heuristica();
