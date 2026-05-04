@@ -42,13 +42,11 @@ public class Comparador {
 
         long fimH = System.currentTimeMillis();
 
-        // ==========================
-        // RESUMO FINAL
-        // ==========================
-        System.out.println("\n==============================================");
-        System.out.println("              RESUMO FINAL");
-        System.out.println("==============================================");
-        System.out.println(" DFS (Busca exaustiva):");
+        // RESULTADOS
+        System.out.println("\n------------------");
+        System.out.println("RESULTADOS:");
+        System.out.println("------------------");
+        System.out.println("\n DFS (Busca exaustiva):");
         System.out.println("   Custo: " + solDFS.getWeight());
         System.out.println("   Tempo: " + (fimDFS - inicioDFS) + " ms\n");
 
