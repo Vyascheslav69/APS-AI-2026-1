@@ -5,8 +5,9 @@ import java.util.Queue;
 
 import solver.estado.Estado;
 
-public class Fila implements EstadoAbertos {
 
+public class Fila implements EstadoAbertos{
+	
 	Queue<Estado> elementos = new LinkedList<>();
 
 	@Override

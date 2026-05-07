@@ -3,24 +3,29 @@ package solver.busca;
 import estruturas_dados.listas.EstadoAbertos;
 import solver.estado.Estado;
 
-public class EspacoDeBusca {
+public class EspacoDeBuscaBB {
     
     private final Estado estadoInicial = new Estado(); // Inicia na cidade 0
     private Estado bestSolucao = null; // Armazena a melhor rota encontrada
     private double bestCusto = Double.MAX_VALUE; // Custo infinito inicial
-    private EstadoAbertos estadosAbertos = null; // Pilha para busca DFS
+    private EstadoAbertos estadosAbertos = null; // Pilha para busca
     
-    public EspacoDeBusca(EstadoAbertos aEstadosAbertos) {
+    public EspacoDeBuscaBB(EstadoAbertos aEstadosAbertos) {
         this.estadosAbertos = aEstadosAbertos;
         estadosAbertos.push(estadoInicial);
     }
     
-    // Explora todos os caminhos possiveis para achar o otimo
+    // Busca otimizada que corta caminhos ja ineficientes
     public Estado solve() {
         while(!estadosAbertos.isEmpty()) {
-            Estado estadoAtual = estadosAbertos.pop(); // Pega o proximo estado da pilha
+            Estado estadoAtual = estadosAbertos.pop(); // Pega proximo estado
             
-            // Se completou a rota, compara o custo com o melhor ja achado
+            // PODA: se o custo atual ja passou do melhor, ignora este caminho
+            if (estadoAtual.getWeight() >= bestCusto) {
+                continue;
+            }
+
+            // Se for solucao completa, atualiza o melhor custo
             if(estadoAtual.isSolution()) {
                 if(estadoAtual.getWeight() < bestCusto) {
                     bestSolucao = estadoAtual;
@@ -29,12 +34,12 @@ public class EspacoDeBusca {
                 continue;
             }
             
-            // Adiciona todas as cidades vizinhas nao visitadas na pilha
+            // Gera proximos passos a partir da cidade atual
             Iterable<Estado> filhos = estadoAtual.getChildren();
             for(Estado e : filhos) {
                 estadosAbertos.push(e);
             }
         }
-        return bestSolucao; // Retorna a melhor rota encontrada no final
+        return bestSolucao; // Retorna a melhor solucao otimizada
     }
 }

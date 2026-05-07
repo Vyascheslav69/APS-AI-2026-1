@@ -4,8 +4,10 @@ import java.util.Stack;
 
 import solver.estado.Estado;
 
-public class Pilha implements EstadoAbertos {
 
+
+public class Pilha implements EstadoAbertos{
+	
 	private Stack<Estado> elementos = new Stack<>();
 
 	@Override
@@ -22,5 +24,7 @@ public class Pilha implements EstadoAbertos {
 	public int size() {
 		return this.elementos.size();
 	}
+	
+	
 
 }
